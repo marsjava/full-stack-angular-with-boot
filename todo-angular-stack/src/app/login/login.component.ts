@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HardcodeAuthenticationService } from '../service/hardcode-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +17,14 @@ export class LoginComponent implements OnInit {
   // Angular.giveMeRouter
   // Dependency Injection - inbuild features
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private service: HardcodeAuthenticationService) { }
 
   ngOnInit(): void {
   }
   handleLogin(): void {
-    if (this.password === 'dummy') {
+    if (this.service.authenticate(this.username, this.password)) {
       this.invalidLogin = false;
       this.router.navigate(['welcome', this.username]);
     } else {
