@@ -10,7 +10,9 @@ import { WelcomeDataService } from '../service/data/welcome-data.service';
 export class WelcomeComponent implements OnInit {
   message = 'Welcome ';
   messageFromService: string;
+  paramMessageFromService: string;
   name = '';
+  param = '';
   // ActivatedRoute
 
   constructor(private route: ActivatedRoute,
@@ -30,11 +32,33 @@ export class WelcomeComponent implements OnInit {
     console.log('last line of getWelcomeMessage');
   }
 
+  getParamMessage() {
+    this.dataService.executeHelloworldBeanParamService(this.param).subscribe(
+      response => this.handleParamResponse(response),
+      error => this.handleParamErrorResponse(error)
+    );
+  }
+
+  handleParamResponse(response) {
+    this.paramMessageFromService = response.message;
+  }
+
   handleSuccessResponse(response) {
-    // console.log('Welcome--> ' + response.message);
     this.messageFromService = response.message;
   }
+
   handleErrorResponse(error) {
-    this.messageFromService = error.error.message;
+    if (error.error.message) {
+      this.messageFromService = error.error.message;
+    } else {
+      this.messageFromService = 'Service not available.';
+    }
+  }
+  handleParamErrorResponse(error) {
+    if (error.error.message) {
+      this.paramMessageFromService = error.error.message;
+    } else {
+      this.paramMessageFromService = 'Service not available.';
+    }
   }
 }

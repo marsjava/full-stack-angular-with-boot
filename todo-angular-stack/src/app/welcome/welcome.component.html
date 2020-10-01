@@ -13,3 +13,10 @@
 <div class="container" *ngIf="messageFromService">
   Your customized message, <h2> {{messageFromService}} </h2>
 </div>
+<div class="container">
+  <input type="text" [(ngModel)]="param" />
+  <button class="btn btn-primary" (click)="getParamMessage()">Param Message</button>
+</div>
+<div class="container" *ngIf="paramMessageFromService">
+  Your customized param message, <h3> {{ paramMessageFromService }} </h3>
+</div>

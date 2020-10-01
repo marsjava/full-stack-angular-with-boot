@@ -1,0 +1,5 @@
+package com.todo.stack.controller.service;
+
+public class TodoHardCodedService {
+
+}

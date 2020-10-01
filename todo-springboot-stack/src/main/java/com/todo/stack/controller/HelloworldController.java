@@ -19,8 +19,8 @@ public class HelloworldController {
 		return new Hello("Hello, Bean world.. This is subscribed by Angular App.");
 //		throw new RuntimeException("Some Error has happened! Contact Support at ***_**");
 	}
-	@GetMapping("/hello-bean/{message}")
-	public Hello sayHelloBeanPath(@PathVariable String message) {
+	@GetMapping("/hello-bean-param/{message}")
+	public Hello sayHelloBeanPath(@PathVariable String message) {		
 		return new Hello(String.format("Hello %s, Bean word..", message));
 	}
 }

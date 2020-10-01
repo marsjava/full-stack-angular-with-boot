@@ -13,4 +13,7 @@ export class WelcomeDataService {
   executeHelloworldBeanService() {
     return this.http.get<Hello>('http://localhost:8080/hello-bean');
   }
+  executeHelloworldBeanParamService(paramValue) {
+    return this.http.get<Hello>(`http://localhost:8080/hello-bean-param/${paramValue}`);
+  }
 }
