@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService, Todo } from '../service/data/todo-data.service';
+import { Router } from '@angular/router';
 /* Future to develop
 1. No Navigation Menu and Footer
 2. No Security for Menus
@@ -16,10 +17,14 @@ import { TodoDataService, Todo } from '../service/data/todo-data.service';
 })
 export class ListTodoComponent implements OnInit {
   todos: Todo[] = [];
-
-  constructor(private service: TodoDataService) { }
+  message = '';
+  constructor(private service: TodoDataService, private route: Router) { }
 
   ngOnInit(): void {
+    this.retreiveTodos();
+  }
+
+  retreiveTodos() {
     this.service.retrieveAllTodos('Max').subscribe(
       response => {
         this.todos = response;
@@ -28,4 +33,23 @@ export class ListTodoComponent implements OnInit {
     );
   }
 
+  deleteById(id) {
+    console.log(`Delete todo ${id}`);
+    this.service.deleteTodo('Max', id).subscribe(
+      response => {
+        console.log(response);
+        this.retreiveTodos();
+        this.message = `Delete of Todo ${id} Successful!`;
+      }
+    );
+  }
+
+  updateById(id) {
+    console.log(`Update Todo ${id}`);
+    this.route.navigate(['todos', id]);
+  }
+
+  addTodo() {
+    this.route.navigate(['todos', -1]);
+  }
 }
