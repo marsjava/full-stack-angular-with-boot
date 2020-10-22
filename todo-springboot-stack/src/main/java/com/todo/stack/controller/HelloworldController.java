@@ -10,6 +10,7 @@ import com.todo.stack.model.Hello;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class HelloworldController {
+	
 	@GetMapping("/hello")
 	public String sayHello() {
 		return "Hello world..";
@@ -23,4 +24,5 @@ public class HelloworldController {
 	public Hello sayHelloBeanPath(@PathVariable String message) {		
 		return new Hello(String.format("Hello %s, Bean word..", message));
 	}
+	
 }

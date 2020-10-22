@@ -1,8 +1,8 @@
 <h1>Todo</h1>
 <div class="container">
-  <div class="alert alert-danger" *ngIf="todoForm.dirty && todoForm.invalid">Enter valid details.</div>
-  <div class="alert alert-danger" *ngIf="todoForm.dirty && description.invalid">Enter minimum 4 characters</div>
-  <div class="alert alert-danger" *ngIf="todoForm.dirty && targetDate.invalid">Enter valid Target date</div>
+  <div class="alert alert-danger" *ngIf="todoForm.touched && todoForm.dirty && todoForm.invalid">Enter valid details.</div>
+  <div class="alert alert-danger" *ngIf="todoForm.touched && todoForm.dirty && description.invalid">Enter minimum 4 characters</div>
+  <div class="alert alert-danger" *ngIf="todoForm.touched && todoForm.dirty && targetDate.invalid">Enter valid Target date</div>
   <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
     <fieldset class="form-group">
       <label>Description</label>
