@@ -14,6 +14,17 @@ export class BasicAuthenticationService {
 
   constructor(private http: HttpClient) { }
 
+  executeJwtAuthService(username, password): any {
+    return this.http.post<any>(
+      `${API_URL}/authenticate`, {username, password}
+    ).pipe(map(
+      data => {
+        sessionStorage.setItem(AUTH_USER, username);
+        sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+      }
+    ));
+  }
+
   executeBasicAuthService(username, password): any {
     const basicAuth = 'Basic ' + window.btoa(username + ':' + password);
     const headers = new HttpHeaders({

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   }
   handleBasicAuthLogin(): void {
     console.log('1. call handleBasicAuthLogin method.');
-    this.authService.executeBasicAuthService(this.username, this.password)
+    this.authService.executeJwtAuthService(this.username, this.password)
         .subscribe(
           data => {
             console.log(data);
